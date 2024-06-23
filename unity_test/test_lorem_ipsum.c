@@ -40,6 +40,11 @@ static void	test_get_next_line_thirdLine(void)
 	}
 	given = get_next_line(fd);
 	TEST_ASSERT_EQUAL_STRING(expect, given);
+	while (given != NULL)
+	{
+		free(given);
+		given = get_next_line(fd);
+	}
 }
 
 int	main(void)

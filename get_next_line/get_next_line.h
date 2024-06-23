@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:14:54 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/22 00:44:35 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/23 22:59:18 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,21 @@
 #  define BUFFER_SIZE 42
 # endif
 
-char	*get_next_line(int fd);
+typedef struct s_buf
+{
+	int				fd;
+	char			*buf;
+	ssize_t			size;
+	struct s_buf	*next;
+}					t_buf;
+
+char				*get_next_line(int fd);
 
 // Utility functions
-char	*ft_strncpy(char *dest, const char *src, size_t n);
-size_t	ft_strlen(char *s);
-
-// Unity functions (make static after testing)
-char	*read_buf(char *buf, char **line, char *last, int fd);
+void				ft_bzero(void *s, size_t n);
+void				*ft_memchr(const void *s, int c, size_t n);
+void				*ft_memmove(void *dest, const void *src, size_t n);
+t_buf				*ft_bufnew(int fd);
+void				ft_bufdel(t_buf **list, int fd);
 
 #endif // GET_NEXT_LINE_H
