@@ -24,10 +24,10 @@ void UNITY_OUTPUT_CHAR(int);
 struct UNITY_STORAGE_T Unity;
 
 #ifdef UNITY_OUTPUT_COLOR
-const char UNITY_PROGMEM UnityStrOk[]                            = "\033[42mOK\033[0m";
-const char UNITY_PROGMEM UnityStrPass[]                          = "\033[42mPASS\033[0m";
-const char UNITY_PROGMEM UnityStrFail[]                          = "\033[41mFAIL\033[0m";
-const char UNITY_PROGMEM UnityStrIgnore[]                        = "\033[43mIGNORE\033[0m";
+const char UNITY_PROGMEM UnityStrOk[]                            = "\033[32mOK\033[0m";
+const char UNITY_PROGMEM UnityStrPass[]                          = "\033[32mPASS\033[0m";
+const char UNITY_PROGMEM UnityStrFail[]                          = "\033[31mFAIL\033[0m";
+const char UNITY_PROGMEM UnityStrIgnore[]                        = "\033[33mIGNORE\033[0m";
 #else
 const char UNITY_PROGMEM UnityStrOk[]                            = "OK";
 const char UNITY_PROGMEM UnityStrPass[]                          = "PASS";
@@ -104,7 +104,7 @@ static void UnityPrintChar(const char* pch)
 }
 
 /*-----------------------------------------------*/
-/* Local helper function to print ANSI escape strings e.g. "\033[42m". */
+/* Local helper function to print ANSI escape strings e.g. "\033[32m". */
 #ifdef UNITY_OUTPUT_COLOR
 static UNITY_UINT UnityPrintAnsiEscapeString(const char* string)
 {
