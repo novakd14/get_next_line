@@ -31,7 +31,7 @@ static void	test_get_next_line_secondLine(void)
 {
 	int	i;
 
-	expect = "";
+	expect = NULL;
 	i = 0;
 	while (i++ < 1)
 	{
@@ -46,7 +46,7 @@ static void	test_get_next_line_thirdLine(void)
 {
 	int	i;
 
-	expect = "";
+	expect = NULL;
 	i = 0;
 	while (i++ < 2)
 	{

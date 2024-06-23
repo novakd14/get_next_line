@@ -6,38 +6,93 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 18:08:14 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/21 17:31:26 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/23 22:56:33 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strncpy(char *dest, const char *src, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	len;
+	unsigned char	*ptr;
+
+	ptr = (unsigned char *)s;
+	while (n > 0)
+		*(ptr + --n) = '\0';
+}
+
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char	*ptr;
+	size_t			i;
+
+	ptr = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		if (*(ptr + i) == (unsigned char)c)
+			return ((void *)(ptr + i));
+		i++;
+	}
+	return (NULL);
+}
+
+// Need to correct this function in libft for dest || src == NULL
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	unsigned char	*dptr;
+	unsigned char	*sptr;
+	size_t			i;
 
 	if (dest == NULL || src == NULL)
 		return (dest);
-	len = 0;
-	while (len < n && *(src + len))
+	dptr = (unsigned char *)dest;
+	sptr = (unsigned char *)src;
+	if (src >= dest)
 	{
-		*(dest + len) = *(src + len);
-		len++;
+		i = 0;
+		while (i < n)
+		{
+			*(dptr + i) = *(sptr + i);
+			i++;
+		}
 	}
-	while (len < n)
-		*(dest + len++) = '\0';
+	else
+		while (n-- > 0)
+			*(dptr + n) = *(sptr + n);
 	return (dest);
 }
 
-// When implementing to libft, change ft_strlen to consider NULL string
-size_t	ft_strlen(char *s)
+t_buf	*ft_bufnew(int fd)
 {
-	size_t	len;
+	t_buf	*new_node;
 
-	if (s == NULL)
-		return (0);
-	len = 0;
-	while (*(s + len))
-		len++;
-	return (len);
+	new_node = (t_buf *)malloc(sizeof(t_buf));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->fd = fd;
+	new_node->buf = NULL;
+	new_node->size = 0;
+	new_node->next = NULL;
+	return (new_node);
+}
+
+void	ft_bufdel(t_buf **list, int fd)
+{
+	t_buf	*del_node;
+	t_buf	*prev_node;
+
+	del_node = *list;
+	while (del_node != NULL && del_node->fd != fd)
+	{
+		prev_node = del_node;
+		del_node = del_node->next;
+	}
+	if (del_node == *list)
+		*list = del_node->next;
+	else
+		prev_node->next = del_node->next;
+	if (del_node->buf != NULL)
+		free(del_node->buf);
+	free(del_node);
 }
