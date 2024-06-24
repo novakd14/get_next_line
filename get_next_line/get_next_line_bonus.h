@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 # include <stdlib.h> // malloc, free
 # include <unistd.h> // read
 # ifndef BUFFER_SIZE
@@ -36,4 +36,4 @@ void				*ft_memmove(void *dest, const void *src, size_t n);
 t_buf				*ft_bufnew(int fd);
 void				ft_bufdel(t_buf **list, int fd);
 
-#endif // GET_NEXT_LINE_H
+#endif // GET_NEXT_LINE_BONUS_H

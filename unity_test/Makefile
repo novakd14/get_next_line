@@ -4,8 +4,9 @@ CFLAGS = -Wall -Wextra -Werror -g -D BUFFER_SIZE=42 -D UNITY_INCLUDE_CONFIG_H
 SRCS_DIR = ../get_next_line/
 TEST_DIR = ../unity_test/
 
-NAME = test_lorem_ipsum.exe
+# NAME = test_lorem_ipsum.exe
 # NAME = test_short_file.exe
+NAME = test_empty_file.exe
 # NAME = test_stdin.exe
 SRCS = get_next_line.c get_next_line_utils.c
 HEAD = get_next_line.h
